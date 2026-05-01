@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Attendance — Landing SCORM</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="logo">QR</div>
+            <div>
+                <h1>App Attendance</h1>
+                <p>Landing SCORM para Moodle · documentación académica</p>
+            </div>
+        </div>
+
+        <div class="progress-box">
+            <span>Progreso</span>
+            <div class="progress-track">
+                <div id="progressBar" class="progress-fill"></div>
+            </div>
+            <strong id="progressText">0%</strong>
+        </div>
+    </header>
+
+    <main class="layout">
+
+        <aside class="sidebar">
+            <h2>Contenido</h2>
+            <a href="#inicio">Inicio <span>01</span></a>
+            <a href="#problema">Problema <span>02</span></a>
+            <a href="#funcionalidades">Funcionalidades <span>03</span></a>
+            <a href="#arquitectura">Arquitectura <span>04</span></a>
+            <a href="#flujo">Flujo <span>05</span></a>
+            <a href="#modelo">Modelo MongoDB <span>06</span></a>
+            <a href="#api">API <span>07</span></a>
+            <a href="#instalacion">Instalación <span>08</span></a>
+            <a href="#codigo">Código <span>09</span></a>
+            <a href="#seguridad">Seguridad <span>10</span></a>
+            <a href="#moodle">Moodle SCORM <span>11</span></a>
+            <a href="#git">Evidencia Git <span>12</span></a>
+            <a href="#sustentacion">Sustentación <span>13</span></a>
+            <a href="#validacion">Validación <span>14</span></a>
+            <a href="#roadmap">Roadmap <span>15</span></a>
+            <a href="#autoevaluacion">Autoevaluación <span>16</span></a>
+        </aside>
+
+        <section class="content">
+
+            <section id="inicio" class="card hero">
+                <div class="hero-text">
+                    <span class="badge">SCORM 1.2 · Moodle · Proyecto académico</span>
+                    <h2>Sistema académico para asistencia con QR temporal</h2>
+                    <p>
+                        App Attendance es una plataforma demostrativa para gestionar asistencia académica
+                        mediante sesiones temporales, código QR de sala, listado de inscritos, resultados
+                        e historial. Esta landing está diseñada para Moodle como paquete SCORM y resume
+                        la documentación técnica, funcional y de sustentación sin publicar datos sensibles reales.
+                    </p>
+
+                    <div class="actions">
+                        <a href="#instalacion">Ver instalación</a>
+                        <a href="#sustentacion">Checklist sustentación</a>
+                        <a class="danger" href="#seguridad">Revisar seguridad</a>
+                    </div>
+                </div>
+
+                <div class="tech-panel">
+                    <div><span>Frontend</span><strong>Ionic React</strong><small>Vite</small></div>
+                    <div><span>Backend</span><strong>Node + Express</strong><small>TypeScript</small></div>
+                    <div><span>Persistencia</span><strong>MongoDB 7</strong><small>Docker</small></div>
+                    <div><span>Entrega</span><strong>SCORM 1.2</strong><small>Moodle</small></div>
+                </div>
+            </section>
+
+            <section id="problema" class="card">
+                <h2>Problema que resuelve</h2>
+                <p>
+                    En una clase presencial o híbrida, tomar asistencia de forma manual consume tiempo,
+                    dificulta la trazabilidad y aumenta el riesgo de errores o registros duplicados.
+                </p>
+
+                <div class="grid-3">
+                    <article>
+                        <h3>Tiempo operativo</h3>
+                        <p>El docente/instructor necesita abrir una sesión, compartir el QR y validar asistencia sin interrumpir la dinámica de clase.</p>
+                    </article>
+                    <article>
+                        <h3>Trazabilidad</h3>
+                        <p>La sesión conserva estado, inscritos, presentes, ausentes, rechazos, duplicados e historial consultable.</p>
+                    </article>
+                    <article>
+                        <h3>Control académico</h3>
+                        <p>El sistema organiza la asistencia por institución, ficha o materia y evita mezclar estudiantes de unidades diferentes.</p>
+                    </article>
+                </div>
+
+                <div class="warning">
+                    <strong>Privacidad:</strong> para Moodle y sustentación no se deben publicar nombres, documentos,
+                    teléfonos, correos, contraseñas, tokens ni URLs reales. Todo ejemplo de este paquete es sintético.
+                </div>
+            </section>
+
+            <section id="funcionalidades" class="card">
+                <h2>Funcionalidades principales</h2>
+                <p>
+                    La documentación del repositorio confirma una app móvil/web Ionic React, una API REST Express
+                    y MongoDB local por Docker Compose.
+                </p>
+
+                <div class="grid-4">
+                    <article>
+                        <span class="pill">Auth</span>
+                        <h3>Login formador</h3>
+                        <p>Autenticación de perfiles administrativos, instructor o docente mediante JWT Bearer.</p>
+                    </article>
+
+                    <article>
+                        <span class="pill">Catálogo</span>
+                        <h3>Instituciones</h3>
+                        <p>Selección de contexto académico: SENA o universidad, con etiquetas y roles parametrizables.</p>
+                    </article>
+
+                    <article>
+                        <span class="pill">Unidad</span>
+                        <h3>Ficha o materia</h3>
+                        <p>Consulta de unidades académicas activas y estudiantes/aprendices inscritos.</p>
+                    </article>
+
+                    <article>
+                        <span class="pill">QR</span>
+                        <h3>Sesión temporal</h3>
+                        <p>Creación, activación, expiración y cierre de sesiones de asistencia.</p>
+                    </article>
+
+                    <article>
+                        <span class="pill">CSR</span>
+                        <h3>Código de sala</h3>
+                        <p>Código rotativo anti-fraude para reforzar que el registro ocurra durante la clase.</p>
+                    </article>
+
+                    <article>
+                        <span class="pill">Resultado</span>
+                        <h3>Presentes y ausentes</h3>
+                        <p>Consulta de registros aceptados y cálculo de inscritos sin asistencia.</p>
+                    </article>
+
+                    <article>
+                        <span class="pill">Auditoría</span>
+                        <h3>Rechazos</h3>
+                        <p>Identificación de documentos inexistentes, duplicados, sesiones cerradas o QR expirados.</p>
+                    </article>
+
+                    <article>
+                        <span class="pill">Moodle</span>
+                        <h3>SCORM</h3>
+                        <p>Landing empaquetada con manifest, progreso y autoevaluación para importación en Moodle.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="arquitectura" class="card">
+                <h2>Arquitectura técnica</h2>
+                <p>
+                    El diseño separa interfaz, API, persistencia, documentación y carga de datos.
+                    La app no se conecta directamente a MongoDB.
+                </p>
+
+                <pre><code>Celular del estudiante
+    | Escanea QR o ingresa código
+    ▼
+Formulario público /attendance/:token
+    | POST /public/attendance/:token/register
+    ▼
+API Backend Express + TypeScript
+    | Validación Zod · JWT · reglas de negocio
+    ▼
+MongoDB 7 por Docker Compose
+
+PC docente/instructor
+    | Ionic React + Capacitor
+    ▼
+Rutas /api/* con Authorization: Bearer &lt;JWT&gt;</code></pre>
+
+                <div class="grid-2">
+                    <article>
+                        <h3>Capas confirmadas</h3>
+                        <ul>
+                            <li><strong>app/:</strong> Ionic React, Vite, Capacitor.</li>
+                            <li><strong>back/:</strong> Node.js, Express, TypeScript, Mongoose, Zod.</li>
+                            <li><strong>db/:</strong> MongoDB, seed sintético/local.</li>
+                            <li><strong>docs/:</strong> arquitectura, API, modelo, operación y validación.</li>
+                        </ul>
+                    </article>
+
+                    <article>
+                        <h3>Restricciones</h3>
+                        <ul>
+                            <li>No conectar frontend directo a MongoDB.</li>
+                            <li>No quemar URL real del backend.</li>
+                            <li>No publicar datos reales en Moodle.</li>
+                            <li>No usar secretos reales en documentación.</li>
+                            <li>No depender de capturas con información personal.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="flujo" class="card">
+                <h2>Flujo funcional para clase</h2>
+                <p>Secuencia recomendada para demostrar el proyecto durante la sustentación.</p>
+
+                <div class="flow-layout">
+                    <div class="steps">
+                        <article><span>1</span><div><h3>Inicio de sesión</h3><p>El docente/instructor ingresa al sistema con un usuario demo autorizado.</p></div></article>
+                        <article><span>2</span><div><h3>Selección académica</h3><p>Selecciona institución y unidad académica: ficha o materia.</p></div></article>
+                        <article><span>3</span><div><h3>Revisión de inscritos</h3><p>Valida que la lista de estudiantes/aprendices corresponde a la unidad seleccionada.</p></div></article>
+                        <article><span>4</span><div><h3>Activación QR</h3><p>Crea una sesión, activa el QR temporal y muestra el código de sala.</p></div></article>
+                        <article><span>5</span><div><h3>Registro público</h3><p>El estudiante usa el QR o enlace público y registra su asistencia.</p></div></article>
+                        <article><span>6</span><div><h3>Resultados</h3><p>El docente consulta presentes, ausentes, duplicados/rechazos e historial.</p></div></article>
+                    </div>
+
+                    <div class="phone">
+                        <div class="phone-header">
+                            <h3>Sesión QR</h3>
+                            <p>Materia Demo · BD-II-DEMO</p>
+                        </div>
+                        <div class="room-code">
+                            <span>CÓDIGO DE SALA</span>
+                            <strong>QRD01</strong>
+                            <small>Ejemplo sintético, no usar datos reales</small>
+                        </div>
+                        <div class="qr-demo"></div>
+                        <p><strong>URL:</strong> https://example.com/attendance/session-demo</p>
+                        <div class="phone-status">Estado: activa · TTL: 10 min</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="modelo" class="card">
+                <h2>Modelo de datos MongoDB</h2>
+                <p>Resumen de colecciones documentadas. Los ejemplos de valores son sintéticos.</p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Colección</th>
+                                <th>Campos clave</th>
+                                <th>Responsabilidad</th>
+                                <th>Índices / reglas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>institutions</td>
+                                <td>code, name, context, labels, theme, active</td>
+                                <td>Define institución y parametrización visual/semántica.</td>
+                                <td>code único.</td>
+                            </tr>
+                            <tr>
+                                <td>academic_units</td>
+                                <td>institutionId, code, name, type</td>
+                                <td>Representa ficha o materia.</td>
+                                <td>institutionId + code único.</td>
+                            </tr>
+                            <tr>
+                                <td>people</td>
+                                <td>institutionId, documento, nombre, matricula, roles</td>
+                                <td>Personas del sistema: formadores, aprendices o estudiantes.</td>
+                                <td>institutionId + documento único.</td>
+                            </tr>
+                            <tr>
+                                <td>enrollments</td>
+                                <td>institutionId, unitId, personId, active</td>
+                                <td>Relación persona-unidad académica.</td>
+                                <td>unitId + personId único.</td>
+                            </tr>
+                            <tr>
+                                <td>attendance_sessions</td>
+                                <td>institutionId, unitId, status, qrToken, qrExpiresAt</td>
+                                <td>Sesión de asistencia temporal.</td>
+                                <td>qrToken único sparse.</td>
+                            </tr>
+                            <tr>
+                                <td>attendance_records</td>
+                                <td>sessionId, personId, documento, status, rejectReason</td>
+                                <td>Intento aceptado o rechazado de asistencia.</td>
+                                <td>Único parcial para accepted por sesión/persona.</td>
+                            </tr>
+                            <tr>
+                                <td>permissions</td>
+                                <td>role, resource, action</td>
+                                <td>Autorización por rol, recurso y acción.</td>
+                                <td>Unión de permisos por roles.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="api" class="card">
+                <h2>Contrato API resumido</h2>
+                <p>Endpoints confirmados por la documentación del proyecto. Los payloads usan valores demo.</p>
+
+                <div class="grid-2">
+                    <article>
+                        <h3>Autenticación</h3>
+                        <pre><code>POST /api/auth/login
+Content-Type: application/json
+
+{
+  "documento": "DOC-DEMO-001",
+  "password": "&lt;password-demo-local&gt;"
+}
+
+Response 200:
+{
+  "data": {
+    "token": "&lt;jwt-demo&gt;",
+    "person": {
+      "id": "&lt;object-id&gt;",
+      "institutionId": "&lt;object-id&gt;",
+      "nombre": "Docente Demo",
+      "documento": "DOC-DEMO-001",
+      "roles": ["DOCENTE"]
+    }
+  }
+}</code></pre>
+                    </article>
+
+                    <article>
+                        <h3>Sesiones</h3>
+                        <pre><code>POST /api/sessions
+Authorization: Bearer &lt;jwt-demo&gt;
+Content-Type: application/json
+
+{
+  "institutionId": "&lt;object-id&gt;",
+  "unitId": "&lt;object-id&gt;",
+  "qrTtlMinutes": 10
+}
+
+POST /api/sessions/&lt;sessionId&gt;/activate
+GET  /api/sessions/&lt;sessionId&gt;/present
+GET  /api/sessions/&lt;sessionId&gt;/absent
+GET  /api/sessions/&lt;sessionId&gt;/rejections
+POST /api/sessions/&lt;sessionId&gt;/close</code></pre>
+                    </article>
+                </div>
+            </section>
+
+            <section id="instalacion" class="card">
+                <h2>Instalación reproducible para estudiantes</h2>
+                <p>Comandos orientados a Windows/PowerShell y Docker. Ajustar rutas locales según el equipo.</p>
+
+                <div class="grid-2">
+                    <article>
+                        <h3>Clonar e instalar</h3>
+                        <pre><code>git clone &lt;URL_DEL_REPOSITORIO&gt; app-attendance
+cd app-attendance
+Copy-Item .env.example .env
+npm run install:all</code></pre>
+                    </article>
+
+                    <article>
+                        <h3>Levantar servicios</h3>
+                        <pre><code>npm run docker:up
+npm run docker:seed
+Invoke-RestMethod http://localhost:4000/health
+Invoke-RestMethod http://localhost:4000/ready
+npm run dev:app</code></pre>
+                    </article>
+                </div>
+
+                <div class="info">
+                    <strong>URL local esperada:</strong> frontend en <code>http://localhost:5173</code>
+                    para desarrollo Vite o <code>http://localhost:8080</code> si se sirve por Docker/nginx.
+                    Backend local: <code>http://localhost:4000</code>.
+                </div>
+            </section>
+
+            <section id="codigo" class="card">
+                <h2>Fragmentos de código seguros</h2>
+                <p>Estos fragmentos sirven para explicar la solución sin exponer secretos ni datos reales.</p>
+
+                <div class="grid-2">
+                    <article>
+                        <h3>.env seguro para clase</h3>
+                        <pre><code>APP_ATTENDANCE_DB_NAME=app_attendance
+MONGO_PORT=27017
+MONGO_INITDB_ROOT_USERNAME=&lt;mongo-user-local&gt;
+MONGO_INITDB_ROOT_PASSWORD=&lt;mongo-password-local&gt;
+MONGO_URI=mongodb://&lt;mongo-user-local&gt;:&lt;mongo-password-local&gt;@mongo:27017/app_attendance
+API_PORT=4000
+APP_PORT=8080
+API_CORS_ORIGIN=http://localhost:5173
+QR_DEFAULT_TTL_MINUTES=10
+ROOM_CODE_TTL_SECONDS=90
+JWT_SECRET=&lt;cambiar-por-secreto-seguro-de-32-caracteres&gt;</code></pre>
+                    </article>
+
+                    <article>
+                        <h3>docker-compose conceptual</h3>
+                        <pre><code>services:
+  mongo:
+    image: mongo:7
+    ports:
+      - "${MONGO_PORT:-27017}:27017"
+    volumes:
+      - app_attendance_mongo_data:/data/db
+
+  api:
+    build: ./back
+    ports:
+      - "${API_PORT:-4000}:4000"
+    depends_on:
+      - mongo
+
+  app:
+    build: ./app
+    ports:
+      - "${APP_PORT:-8080}:80"
+
+volumes:
+  app_attendance_mongo_data:</code></pre>
+                    </article>
+
+                    <article>
+                        <h3>Flujo de consumo frontend</h3>
+                        <pre><code>async function login(documento, password) {
+  const response = await fetch(`${backendUrl}/api/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ documento, password })
+  });
+
+  if (!response.ok) {
+    throw new Error('Credenciales inválidas o API no disponible');
+  }
+
+  return response.json();
+}</code></pre>
+                    </article>
+
+                    <article>
+                        <h3>Validación de QR</h3>
+                        <pre><code>Reglas esperadas:
+1. El token debe existir.
+2. La sesión debe estar activa.
+3. El QR no debe estar expirado.
+4. El documento debe pertenecer a la unidad académica.
+5. No debe existir asistencia accepted previa para la misma persona.
+6. Si falla, registrar rechazo con motivo trazable.</code></pre>
+                    </article>
+                </div>
+            </section>
+
+            <section id="seguridad" class="card">
+                <h2>Seguridad y privacidad</h2>
+                <p>La landing y el SCORM deben ser publicables en Moodle sin datos personales reales.</p>
+
+                <div class="grid-2">
+                    <article class="bad">
+                        <h3>No publicar:</h3>
+                        <p>
+                            nombres reales, documentos reales, teléfonos, correos, capturas con estudiantes,
+                            contraseñas reales, tokens JWT, URLs activas de túneles, contenido de .env real,
+                            archivos con seeds privados o información institucional sensible.
+                        </p>
+                    </article>
+
+                    <article class="good">
+                        <h3>Sí publicar:</h3>
+                        <p>
+                            datos demo, diagramas conceptuales, comandos genéricos, variables con placeholders,
+                            capturas anonimizadas, flujos funcionales, checklist de validación y código sin secretos.
+                        </p>
+                    </article>
+                </div>
+
+                <h3>Checklist antes de subir a Moodle</h3>
+
+                <label class="check-item"><input type="checkbox" class="check-progress"> Revisé que no haya nombres ni documentos reales de estudiantes.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> Revisé que no haya tokens, passwords, JWT_SECRET real ni variables privadas.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> Reemplacé URLs reales de túneles por https://example.com o placeholders.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> Las capturas, si se usan, están anonimizadas o reemplazadas por mockups.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> Los comandos no destruyen datos ni publican archivos sensibles.</label>
+            </section>
+
+            <section id="moodle" class="card">
+                <h2>Uso como SCORM en Moodle</h2>
+                <p>
+                    Este paquete incluye <code>imsmanifest.xml</code> en la raíz, archivo principal
+                    <code>index.html</code>, estilos separados y JavaScript separado.
+                </p>
+
+                <div class="grid-2">
+                    <article>
+                        <h3>Importar</h3>
+                        <ol>
+                            <li>Entrar al curso.</li>
+                            <li>Activar edición.</li>
+                            <li>Agregar actividad o recurso.</li>
+                            <li>Seleccionar paquete SCORM.</li>
+                            <li>Subir el ZIP completo.</li>
+                            <li>Guardar y mostrar.</li>
+                        </ol>
+                    </article>
+
+                    <article>
+                        <h3>Seguimiento</h3>
+                        <p>
+                            El JavaScript intenta comunicarse con SCORM 1.2 para registrar progreso,
+                            ubicación, puntaje de autoevaluación y estado completado/aprobado.
+                            Si se abre fuera de Moodle, usa almacenamiento local como respaldo.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="info">
+                    <strong>Importante:</strong> Moodle necesita el ZIP completo. No subir solo el
+                    <code>index.html</code>. El archivo <code>imsmanifest.xml</code> debe quedar en la raíz del paquete.
+                </div>
+            </section>
+
+            <section id="git" class="card">
+                <h2>Evidencia Git y commits periódicos</h2>
+                <p>
+                    Para dejar evidencia hasta donde llegue el trabajo, mantener commits cerrados cada
+                    avance desde el inicio real de la implementación.
+                </p>
+
+                <div class="grid-2">
+                    <article>
+                        <h3>Rama base</h3>
+                        <pre><code>git checkout -b feat/initial-project
+
+# Cada avance:
+git status
+git add .
+git commit -m "docs(scorm): add Moodle landing documentation package"</code></pre>
+                    </article>
+
+                    <article>
+                        <h3>Commits sugeridos</h3>
+                        <pre><code>chore(docs): initialize scorm documentation structure
+docs(scorm): add sanitized academic overview
+feat(scorm): add Moodle landing package
+docs(security): add privacy checklist
+docs(sustentation): add presentation guide
+test(scorm): validate manifest and package structure</code></pre>
+                    </article>
+                </div>
+
+                <div class="warning">
+                    <strong>No hacer push sin autorización.</strong> Antes de subir, validar que el SCORM,
+                    el README y los docs no incluyan información sensible.
+                </div>
+            </section>
+
+            <section id="sustentacion" class="card">
+                <h2>Guía de sustentación</h2>
+                <p>Secuencia recomendada para explicar el proyecto en clase.</p>
+
+                <div class="grid-2">
+                    <article>
+                        <h3>Orden de presentación</h3>
+                        <ol>
+                            <li>Problema de asistencia manual.</li>
+                            <li>Arquitectura por capas.</li>
+                            <li>Modelo de datos.</li>
+                            <li>Flujo docente/instructor.</li>
+                            <li>Generación QR y código de sala.</li>
+                            <li>Registro del estudiante.</li>
+                            <li>Resultados e historial.</li>
+                            <li>Seguridad y privacidad.</li>
+                            <li>Validación técnica.</li>
+                            <li>Roadmap.</li>
+                        </ol>
+                    </article>
+
+                    <article>
+                        <h3>Preguntas esperadas</h3>
+                        <ul>
+                            <li>¿Por qué MongoDB y no almacenamiento local?</li>
+                            <li>¿Por qué el frontend no se conecta a la base de datos?</li>
+                            <li>¿Cómo se evita duplicidad?</li>
+                            <li>¿Qué pasa si el QR expira?</li>
+                            <li>¿Cómo se protege el token JWT?</li>
+                            <li>¿Cómo se desplegaría en AWS?</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <h3>Checklist de demostración</h3>
+
+                <label class="check-item"><input type="checkbox" class="check-progress"> Levantar Docker y validar /health y /ready.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> Abrir la app y configurar URL del backend local o túnel demo.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> Iniciar sesión con usuario demo no sensible.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> Seleccionar una materia/ficha demo.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> Generar sesión QR, registrar asistencia y mostrar resultados.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> Explicar cómo se anonimizaron los datos para Moodle.</label>
+            </section>
+
+            <section id="validacion" class="card">
+                <h2>Validación técnica</h2>
+                <p>Comandos sugeridos para verificar el repositorio antes de sustentación.</p>
+
+                <div class="grid-2">
+                    <article>
+                        <h3>Validaciones del proyecto</h3>
+                        <pre><code>git status
+git branch --show-current
+npm run lint
+npm run typecheck
+npm run test
+npm run build
+docker compose config
+docker compose up -d --build
+docker compose logs -f api mongo</code></pre>
+                    </article>
+
+                    <article>
+                        <h3>Validación del SCORM</h3>
+                        <pre><code># Debe existir en la raíz del ZIP:
+imsmanifest.xml
+index.html
+css/styles.css
+js/scorm.js
+js/app.js
+
+# Validar ZIP local:
+unzip -t app-attendance-scorm-moodle.zip</code></pre>
+                    </article>
+                </div>
+
+                <div class="info">
+                    Si un script no existe en <code>package.json</code>, registrar:
+                    <strong>Comando no disponible en package.json</strong> y continuar con el siguiente.
+                </div>
+            </section>
+
+            <section id="roadmap" class="card">
+                <h2>Roadmap técnico</h2>
+                <p>Mejoras razonables después de la entrega base.</p>
+
+                <div class="grid-3">
+                    <article>
+                        <h3>Pruebas</h3>
+                        <ul>
+                            <li>Más pruebas de integración.</li>
+                            <li>Pruebas E2E del flujo QR.</li>
+                            <li>Pruebas de expiración y duplicidad.</li>
+                        </ul>
+                    </article>
+
+                    <article>
+                        <h3>Seguridad</h3>
+                        <ul>
+                            <li>Rotación de secretos.</li>
+                            <li>CORS restringido.</li>
+                            <li>Hash obligatorio de passwords.</li>
+                            <li>Rate limiting en registro público.</li>
+                        </ul>
+                    </article>
+
+                    <article>
+                        <h3>Despliegue</h3>
+                        <ul>
+                            <li>Contenedores optimizados.</li>
+                            <li>ECS/EC2 según alcance.</li>
+                            <li>Dominio HTTPS.</li>
+                            <li>Logs y monitoreo.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="autoevaluacion" class="card">
+                <h2>Autoevaluación</h2>
+                <p>Marca las opciones que ya están listas. El progreso se guarda localmente y también intenta reportarse a SCORM.</p>
+
+                <label class="check-item"><input type="checkbox" class="check-progress"> La landing explica claramente el problema y la solución.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> El modelo MongoDB está documentado con colecciones y reglas.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> La arquitectura evita conexión directa frontend-base de datos.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> El paquete tiene imsmanifest.xml en la raíz.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> El README y la documentación no contienen información sensible.</label>
+                <label class="check-item"><input type="checkbox" class="check-progress"> Existe evidencia de commits periódicos en Git.</label>
+
+                <button id="completeButton" class="complete-button">Marcar completado</button>
+            </section>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>App Attendance · Taller tercer corte · Programación Móvil · Datos sintéticos para uso académico</p>
+    </footer>
+
+    <script src="js/scorm.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
