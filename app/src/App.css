@@ -1,184 +1,222 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+.login-screen {
+  --background: linear-gradient(135deg, #eef5ff, #ffffff);
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
+.login-container {
+  min-height: 100%;
+  padding: 34px 22px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.login-logo {
+  width: 86px;
+  height: 86px;
+  border-radius: 28px;
+  background: #1f73b7;
+  color: white;
+  display: grid;
   place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  font-size: 42px;
+  margin-bottom: 18px;
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+.login-container h1 {
+  margin: 0;
+  font-size: 34px;
+  color: #071a35;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+.login-container p {
+  max-width: 420px;
+  color: #445c7a;
+  line-height: 1.6;
 }
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
+.login-card {
   width: 100%;
+  max-width: 430px;
+  border-radius: 24px;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+.demo-box {
+  background: #eef5ff;
+  border: 1px solid #d6e4f2;
+  border-radius: 16px;
+  padding: 14px;
+  margin: 18px 0;
+  display: grid;
+  gap: 8px;
+  color: #071a35;
+  font-weight: 700;
+}
+
+.app-content {
+  --background: #eef5fb;
+}
+
+.app-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+.welcome-card {
+  background: white;
+  border: 1px solid #d6e4f2;
+  border-radius: 24px;
+  padding: 22px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+}
+
+.welcome-card h1 {
+  margin: 0;
+  color: #071a35;
+}
+
+.welcome-card p {
+  margin-bottom: 0;
+  color: #536783;
+}
+
+.loading-box {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 18px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.error-card {
+  border-left: 5px solid #eb445a;
+  color: #b00020;
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.info-card {
+  border-radius: 22px;
+}
+
+.info-card h2 {
+  color: #071a35;
+  font-size: 24px;
+  margin: 8px 0;
+}
+
+.info-card h3 {
+  color: #1f73b7;
+  margin: 0;
+}
+
+.info-card p {
+  color: #536783;
+}
+
+.info-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: #eaf4ff;
+  color: #1f73b7;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+}
+
+.summary-card {
+  border-radius: 22px;
+}
+
+.attendance-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.attendance-summary div {
+  border-radius: 18px;
+  padding: 18px;
+  text-align: center;
+}
+
+.attendance-summary ion-icon {
+  font-size: 36px;
+}
+
+.attendance-summary strong {
+  display: block;
+  font-size: 34px;
+  margin-top: 8px;
+}
+
+.accepted {
+  background: #ebfff1;
+  color: #087b31;
+}
+
+.rejected {
+  background: #fff0f0;
+  color: #b00020;
+}
+
+.qr-box {
+  text-align: center;
+  background: #eef5ff;
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.qr-fake {
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 18px;
+  background: repeating-linear-gradient(
+    45deg,
+    #111 0,
+    #111 8px,
+    #fff 8px,
+    #fff 16px
+  );
+  border: 8px solid #fff;
+  outline: 6px solid #111;
+}
+
+.qr-box h2 {
+  font-size: 42px;
+  letter-spacing: 8px;
+  margin: 0;
+  color: #1f73b7;
+}
+
+.session-details {
+  margin-top: 20px;
+  color: #334a68;
+}
+
+ion-card {
+  box-shadow: 0 14px 35px rgba(26, 60, 94, 0.08);
+}
+
+@media (min-width: 760px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+  .summary-card {
+    grid-column: span 2;
   }
 }
