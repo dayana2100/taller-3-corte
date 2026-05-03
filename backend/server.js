@@ -5,6 +5,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const connectDatabase = require("./config/database");
 const healthRoutes = require("./routes/health.routes");
+const demoRoutes = require("./routes/demo.routes");
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/", healthRoutes);
+app.use("/", demoRoutes);
 
 connectDatabase().then(() => {
     app.listen(port, () => {
