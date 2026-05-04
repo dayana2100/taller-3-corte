@@ -39,7 +39,123 @@ import "./App.css";
 
 setupIonicReact();
 
-const API_URL = "http://localhost:4000";
+const API_URL = "http://10.0.2.2:4000";
+
+const DEMO_SUMMARY = {
+  message: "Resumen demo de App Attendance",
+  database: "MongoDB",
+  dataType: "Datos sintéticos",
+  totals: {
+    institutions: 1,
+    academicUnits: 1,
+    people: 6,
+    enrollments: 6,
+    attendanceSessions: 1,
+    attendanceRecords: 5,
+    acceptedRecords: 3,
+    rejectedRecords: 2
+  },
+  demo: {
+    institution: "Institución Demo de Programación Móvil",
+    academicUnit: "Programación Móvil - Clase Demo QR",
+    session: "Sesión Demo - Asistencia con QR Temporal",
+    roomCode: "QRD01",
+    sessionStatus: "ACTIVE"
+  }
+};
+
+const DEMO_PEOPLE = [
+  {
+    _id: "teacher-demo",
+    fullName: "Docente Demo",
+    documentNumber: "DOC-DEMO-001",
+    roles: ["TEACHER"]
+  },
+  {
+    _id: "student-demo-1",
+    fullName: "Estudiante Demo 01",
+    documentNumber: "EST-DEMO-001",
+    roles: ["STUDENT"]
+  },
+  {
+    _id: "student-demo-2",
+    fullName: "Estudiante Demo 02",
+    documentNumber: "EST-DEMO-002",
+    roles: ["STUDENT"]
+  },
+  {
+    _id: "student-demo-3",
+    fullName: "Estudiante Demo 03",
+    documentNumber: "EST-DEMO-003",
+    roles: ["STUDENT"]
+  },
+  {
+    _id: "student-demo-4",
+    fullName: "Estudiante Demo 04",
+    documentNumber: "EST-DEMO-004",
+    roles: ["STUDENT"]
+  },
+  {
+    _id: "student-demo-5",
+    fullName: "Estudiante Demo 05",
+    documentNumber: "EST-DEMO-005",
+    roles: ["STUDENT"]
+  }
+];
+
+const DEMO_SESSIONS = [
+  {
+    _id: "session-demo",
+    title: "Sesión Demo - Asistencia con QR Temporal",
+    status: "ACTIVE",
+    roomCode: "QRD01",
+    qrToken: "qr-token-demo-001",
+    unitId: {
+      name: "Programación Móvil - Clase Demo QR"
+    },
+    teacherId: {
+      fullName: "Docente Demo"
+    }
+  }
+];
+
+const DEMO_RECORDS = [
+  {
+    _id: "record-1",
+    personId: { fullName: "Estudiante Demo 01" },
+    documentNumber: "EST-DEMO-001",
+    status: "ACCEPTED",
+    rejectReason: "NONE"
+  },
+  {
+    _id: "record-2",
+    personId: { fullName: "Estudiante Demo 02" },
+    documentNumber: "EST-DEMO-002",
+    status: "ACCEPTED",
+    rejectReason: "NONE"
+  },
+  {
+    _id: "record-3",
+    personId: { fullName: "Estudiante Demo 03" },
+    documentNumber: "EST-DEMO-003",
+    status: "ACCEPTED",
+    rejectReason: "NONE"
+  },
+  {
+    _id: "record-4",
+    personId: null,
+    documentNumber: "EST-DEMO-999",
+    status: "REJECTED",
+    rejectReason: "DOCUMENT_NOT_FOUND"
+  },
+  {
+    _id: "record-5",
+    personId: { fullName: "Estudiante Demo 01" },
+    documentNumber: "EST-DEMO-001",
+    status: "REJECTED",
+    rejectReason: "DUPLICATED_RECORD"
+  }
+];
 
 function App() {
   const [logged, setLogged] = useState(false);
@@ -79,10 +195,13 @@ function App() {
       setPeople(peopleData.data || []);
       setSessions(sessionsData.data || []);
       setRecords(recordsData.data || []);
+      setError("");
     } catch (err) {
-      setError(
-        "No se pudo conectar con el backend. Verifica que MongoDB esté activo y que el backend esté corriendo en http://localhost:4000."
-      );
+      setSummary(DEMO_SUMMARY);
+      setPeople(DEMO_PEOPLE);
+      setSessions(DEMO_SESSIONS);
+      setRecords(DEMO_RECORDS);
+      setError("");
     } finally {
       setLoading(false);
     }

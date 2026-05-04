@@ -11,10 +11,7 @@ const app = express();
 
 const port = process.env.PORT || 4000;
 
-app.use(cors({
-    origin: process.env.API_CORS_ORIGIN || "*"
-}));
-
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
@@ -30,7 +27,7 @@ app.use("/", healthRoutes);
 app.use("/", demoRoutes);
 
 connectDatabase().then(() => {
-    app.listen(port, () => {
-        console.log(`Servidor ejecutándose en http://localhost:${port}`);
+    app.listen(port, "0.0.0.0", () => {
+        console.log(`Servidor ejecutándose en http://0.0.0.0:${port}`);
     });
 });
